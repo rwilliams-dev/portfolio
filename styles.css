@@ -249,21 +249,25 @@ body {
   box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-.project-image {
-  height: 200px;
-  background-color: #222;
-}
-
 .barber {
-  background: linear-gradient(135deg, #1a1a1a, #c8a96e);
+  height: 200px;
+  background-image: url('./images/barber.png.png');
+  background-size: cover;
+  background-position: top;
 }
 
 .personal {
-  background: linear-gradient(135deg, #1a1a2e, #e0a04f);
+  height: 200px;
+  background-image: url('images/personal.png.png');
+  background-size: cover;
+  background-position: top;
 }
 
 .doreen {
-  background: linear-gradient(135deg, #111, #333);
+  height: 200px;
+  background-image: url('images/doreen.png.png');
+  background-size: cover;
+  background-position: top;
 }
 
 .project-info {
