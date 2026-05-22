@@ -405,3 +405,43 @@ footer {
     transform: translateY(0);
   }
 }
+
+.contact-wrapper {
+  display: flex;
+  gap: 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-form {
+  flex: 1;
+  min-width: 300px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  background-color: #1a1a1a;
+  border: 1px solid #333;
+  color: white;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+#form-status {
+  margin-top: 15px;
+  font-size: 16px;
+  text-align: center;
+}

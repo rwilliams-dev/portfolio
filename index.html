@@ -6,6 +6,7 @@
     <title>Richard Williams | Web Developer</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- NAVBAR -->
@@ -145,25 +146,50 @@
             </div>
         </div>
      </section>
+<!-- CONTACT -->
+<section class="contact" id="contact">
+   <h2 class="section-title">Let's Work Together</h2>
+   <p class="section-subtitle">Have a project in mind? Let's talk about it</p>
 
-     <!-- CONTACT -->
-     <section class="contact" id="contact">
-        <h2 class="section-title">Let's Work Together</h2>
-        <p class="section-subtitle">Have a project in mind? Let's talk about it</p>
-        <div class="contact-info">
-            <h3>📧 Email</h3>
-            <p>rwilliams.dev84@gmail.com</p>
-        </div>
-        <div class="contact-item">
+   <div class="contact-wrapper">
+      <div class="contact-info">
+         <div class="contact-item">
             <h3>💼 Upwork</h3>
             <p>Search "rwilliams-dev"</p>
-        </div>
-        <div class="contact-item">
+         </div>
+         <div class="contact-item">
             <h3>🐙 GitHub</h3>
             <p>github.com/rwilliams-dev</p>
-    </div>
-    <a href="mailto:rwilliams.dev84@gmail.com?subject=Project%20Inquiry" class="btn-primary">Send Me A Message</a>
-    </section>
+         </div>
+         <div class="contact-item">
+            <h3>📍 Location</h3>
+            <p>SF Bay Area → Kisumu, Kenya 🇰🇪</p>
+         </div>
+      </div>
+
+      <form class="contact-form" id="contact-form">
+         <div class="form-group">
+            <input type="text" id="from_name" placeholder="Your Name" required />
+         </div>
+         <div class="form-group">
+            <input type="email" id="from_email" placeholder="Your Email" required />
+         </div>
+         <div class="form-group">
+            <select id="service">
+               <option>Business Website</option>
+               <option>Landing Page</option>
+               <option>Portfolio Site</option>
+               <option>SEO Optimization</option>
+            </select>
+         </div>
+         <div class="form-group">
+            <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+         </div>
+         <button type="submit" class="btn-primary" id="submit-btn">Send Message</button>
+         <p id="form-status"></p>
+      </form>
+   </div>
+</section>
     
     <!-- FOOTER -->
      <footer>
