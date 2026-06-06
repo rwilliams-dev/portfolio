@@ -445,3 +445,60 @@ footer {
   font-size: 16px;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .nav-links a {
+    margin-left: 15px;
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 60px 20px;
+    flex-direction: column;
+    min-height: auto;
+  }
+
+  .hero-name {
+    font-size: 42px;
+  }
+
+  .hero-badge {
+    position: static;
+    transform: none;
+    margin-top: 40px;
+    width: 100%;
+  }
+
+  .about {
+    padding: 60px 20px;
+  }
+
+  .about-stats {
+    gap: 30px;
+    flex-wrap: wrap;
+  }
+
+  .projects {
+    padding: 60px 20px;
+  }
+
+  .project-card {
+    width: 100%;
+  }
+
+  .skills {
+    padding: 60px 20px;
+  }
+
+  .contact {
+    padding: 60px 20px;
+  }
+
+  .contact-info {
+    gap: 30px;
+  }
+}
