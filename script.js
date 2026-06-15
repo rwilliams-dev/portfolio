@@ -17,7 +17,7 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
     message: document.getElementById("message").value,
   };
 
-  emailjs.send("service_5an9bcm", "template_252kzzv", templateParams)
+  emailjs.send("service_wshbupp", "template_efq356b", templateParams)
     .then(function() {
       status.innerText = "✅ Message sent! I'll get back to you within 24 hours.";
       status.style.color = "#2d8a4e";
