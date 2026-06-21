@@ -249,9 +249,9 @@ body {
   box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-.barber {
+.dumela-press {
   height: 200px;
-  background-image: url('./images/barber.png.png');
+  background-image: url('./images/dumela-press.png');
   background-size: cover;
   background-position: top;
 }
