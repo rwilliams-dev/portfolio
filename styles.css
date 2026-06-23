@@ -256,11 +256,11 @@ body {
   background-position: top;
 }
 
-.personal {
-  height: 200px;
-  background-image: url('images/personal.png.png');
-  background-size: cover;
-  background-position: top;
+.ziwa-grill {
+    height: 200px;
+    background-image: url('./images/ziwa-grill.png');
+    background-size: cover;
+    background-position: top;
 }
 
 .doreen {
