@@ -1,3 +1,21 @@
+// Navbar shrink on scroll
+const navbar = document.querySelector(".navbar");
+window.addEventListener("scroll", () => {
+  navbar.classList.toggle("scrolled", window.scrollY > 40);
+}, { passive: true });
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
 // EmailJS Contact Form
 emailjs.init("f9Dng_uDxGBzPQWX3");
 
@@ -20,7 +38,7 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
   emailjs.send("service_wshbupp", "template_efq356b", templateParams)
     .then(function() {
       status.innerText = "✅ Message sent! I'll get back to you within 24 hours.";
-      status.style.color = "#2d8a4e";
+      status.style.color = "#4ade80";
       btn.innerText = "Send Message";
       btn.disabled = false;
       document.getElementById("contact-form").reset();

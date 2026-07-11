@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Richard Williams | Web Developer</title>
+    <meta name="description" content="Richard Williams — web developer building clean, professional websites that help businesses attract more customers and grow online.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='Georgia,serif' fill='%23d9a45a'>R</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
@@ -16,7 +18,7 @@
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
-            <a href="#contact">Contacts</a>
+            <a href="#contact">Contact</a>
         </div>
         <div class="nav-cta">
             <a href="#contact" class="hire-btn">Hire Me</a>
@@ -43,7 +45,7 @@
 
      <!-- About -->
      <section class="about" id="about">
-        <div class="about-content">
+        <div class="about-content reveal">
             <h2 class="section-title">About Me</h2>
             <p>I'm a Web Developer based in the San Francisco Bay Area, building my path to becoming a fully remote entrepreneur. I specialize in creating professional websites for businesses, foundations, Non-Profits, photographers, writers, and other creatives who need a strong online presence</p>
             <p>My mission is to make your business look as good online as they are in real life. Every project I secure gets my full attention, clean code, and a design that converts visitors into customers.</p>
@@ -70,7 +72,7 @@
         <p class="section-subtitle">Real Projects. Real Code. Real Results.</p>
         <div class="projects-grid">
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-image dumela-press"></div>
                 <div class="project-info">
                     <h3>Dumela Press</h3>
@@ -80,11 +82,11 @@
                         <span>CSS</span>
                         <span>JavaScript</span>
                     </div>
-                    <a href="https://dumelapress.com" target="_blank" class="project-link">View Live _</a>
+                    <a href="https://dumelapress.com" target="_blank" class="project-link">View Live</a>
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-image ziwa-grill"></div>
                 <div class="project-info">
                     <h3>Ziwa Grill</h3>
@@ -94,11 +96,11 @@
                         <span>CSS</span>
                         <span>JavaScript</span>
                     </div>
-                    <a href="https://rwilliams-dev.github.io/ziwa-grill" target="_blank" class="project-link">View Live _</a>
+                    <a href="https://rwilliams-dev.github.io/ziwa-grill" target="_blank" class="project-link">View Live</a>
                 </div>
             </div>
 
-            <div class="project-card">
+            <div class="project-card reveal">
                 <div class="project-image doreen"></div>
                 <div class="project-info">
                     <h3>Doreen Swahili Website</h3>
@@ -109,7 +111,7 @@
                         <span>JavaScript</span>
                         <span>React</span>
                     </div>
-                    <a href="https://mwalimu-doreen.vercel.app/" target="_blank" class="project-link">View Live_</a>
+                    <a href="https://mwalimu-doreen.vercel.app/" target="_blank" class="project-link">View Live</a>
                 </div>
             </div>
 
@@ -120,29 +122,29 @@
      <section class="skills" id="skills">
         <h2 class="skills-title">Skills</h2>
         <div class="skills-grid">
-            <div class="skill-item">
-                <h3>HTML</h3>
-                <div class="skill-bar"><div class="skill-fill" style="width: 85%"></div></div>
+            <div class="skill-item reveal" style="--fill: 85%">
+                <h3>HTML <span>85%</span></h3>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
             </div>
-            <div class="skill-item">
-                <h3>CSS</h3>
-                <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+            <div class="skill-item reveal" style="--fill: 80%">
+                <h3>CSS <span>80%</span></h3>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
             </div>
-            <div class="skill-item">
-                <h3>JavaScript</h3>
-                <div class="skill-bar"><div class="skill-fill" style="width: 65%"></div></div>
+            <div class="skill-item reveal" style="--fill: 65%">
+                <h3>JavaScript <span>65%</span></h3>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
             </div>
-            <div class="skill-item">
-                <h3>Python</h3>
-                <div class="skill-bar"><div class="skill-fill" style="width: 50%"></div></div> 
+            <div class="skill-item reveal" style="--fill: 50%">
+                <h3>Python <span>50%</span></h3>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
             </div>
-            <div class="skill-item">
-                <h3>Git & GitHub</h3>
-                <div class="skill-bar"><div class="skill-fill" style="width: 70%"></div></div>
+            <div class="skill-item reveal" style="--fill: 70%">
+                <h3>Git & GitHub <span>70%</span></h3>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
             </div>
-            <div class="skill-item">
-                <h3>Responsive Design</h3>
-                <div class="skill-bar"><div class="skill-fill" style="width: 80%"></div></div>
+            <div class="skill-item reveal" style="--fill: 80%">
+                <h3>Responsive Design <span>80%</span></h3>
+                <div class="skill-bar"><div class="skill-fill"></div></div>
             </div>
         </div>
      </section>
@@ -153,21 +155,24 @@
 
    <div class="contact-wrapper">
       <div class="contact-info">
-         <div class="contact-item">
-            <h3>💼 Upwork</h3>
+         <div class="contact-item reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            <h3>Upwork</h3>
             <p>Search "rwilliams-dev"</p>
          </div>
-         <div class="contact-item">
-            <h3>🐙 GitHub</h3>
+         <div class="contact-item reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            <h3>GitHub</h3>
             <p>github.com/rwilliams-dev</p>
          </div>
-         <div class="contact-item">
-            <h3>📍 Location</h3>
-            <p>SF Bay Area → Kisumu, Kenya 🇰🇪</p>
+         <div class="contact-item reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <h3>Location</h3>
+            <p>SF Bay Area → Kisumu, Kenya</p>
          </div>
       </div>
 
-      <form class="contact-form" id="contact-form">
+      <form class="contact-form reveal" id="contact-form">
          <div class="form-group">
             <input type="text" id="from_name" placeholder="Your Name" required />
          </div>
@@ -195,8 +200,8 @@
     <!-- FOOTER -->
      <footer>
         <p class="footer-links"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
-        <p>©️ 2026 Richard Williams | Built with HTML, CSS, & JavaScript</p>
-        <p>SF Bay Area, CA _ Kenya</p>
+        <p>© 2026 Richard Williams · Built with HTML, CSS, & JavaScript</p>
+        <p>SF Bay Area, CA → Kisumu, Kenya</p>
      </footer>
 
      <script src="script.js"></script>
