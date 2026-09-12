@@ -26,6 +26,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- HERO -->
      <section class="hero">
         <div class="hero-content">
@@ -149,8 +150,11 @@
 
         <div class="preview-wrapper">
            <div class="preview-controls">
+              <label class="visually-hidden" for="preview-name">Your business name</label>
               <input type="text" id="preview-name" placeholder="Your business name" />
+              <label class="visually-hidden" for="preview-cuisine">Kind of place</label>
               <select id="preview-cuisine"></select>
+              <label class="visually-hidden" for="preview-town">Your town</label>
               <input type="text" id="preview-town" placeholder="Your town" />
            </div>
            <iframe id="preview-frame" title="Live storefront preview" sandbox=""></iframe>
@@ -213,12 +217,15 @@
 
       <form class="contact-form reveal" id="contact-form">
          <div class="form-group">
+            <label class="visually-hidden" for="from_name">Your name</label>
             <input type="text" id="from_name" placeholder="Your Name" required />
          </div>
          <div class="form-group">
+            <label class="visually-hidden" for="from_email">Your email</label>
             <input type="email" id="from_email" placeholder="Your Email" required />
          </div>
          <div class="form-group">
+            <label class="visually-hidden" for="service">What you need</label>
             <select id="service">
                <option>Business Website</option>
                <option>Landing Page</option>
@@ -227,6 +234,7 @@
             </select>
          </div>
          <div class="form-group">
+            <label class="visually-hidden" for="message">Your message</label>
             <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
          </div>
          <p class="form-consent">By submitting this form, you agree to our <a href="privacy.html">Privacy Policy</a>.</p>
@@ -236,6 +244,8 @@
    </div>
 </section>
     
+    </main>
+
     <!-- FOOTER -->
      <footer>
         <p class="footer-links"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></p>
