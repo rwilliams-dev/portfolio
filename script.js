@@ -38,13 +38,13 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
   emailjs.send("service_wshbupp", "template_efq356b", templateParams)
     .then(function() {
       status.innerText = "✅ Message sent! I'll get back to you within 24 hours.";
-      status.style.color = "#4ade80";
+      status.style.color = "var(--good)";
       btn.innerText = "Send Message";
       btn.disabled = false;
       document.getElementById("contact-form").reset();
     }, function() {
       status.innerText = "Something went wrong. Please email me directly.";
-      status.style.color = "red";
+      status.style.color = "var(--bad)";
       btn.innerText = "Send Message";
       btn.disabled = false;
     });
