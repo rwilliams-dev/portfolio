@@ -16,6 +16,7 @@
         <div class="logo">RDW</div>
         <div class="nav-links">
             <a href="#about">About</a>
+            <a href="#audit">Free Audit</a>
             <a href="#projects">Projects</a>
             <a href="#skills">Skills</a>
             <a href="#contact">Contact</a>
@@ -63,6 +64,29 @@
                     <p>Committed</p>
                 </div>
             </div>
+        </div>
+     </section>
+
+     <!-- FREE AUDIT -->
+     <section class="audit" id="audit">
+        <h2 class="section-title">Free Website Audit</h2>
+        <p class="section-subtitle">See how your site scores on Google's own tests — no signup, no catch</p>
+
+        <div class="audit-wrapper reveal">
+           <form class="audit-form" id="audit-form" novalidate>
+              <label class="visually-hidden" for="audit-url">Website address</label>
+              <input
+                 type="text"
+                 id="audit-url"
+                 name="url"
+                 placeholder="yourbusiness.com"
+                 autocomplete="url"
+                 spellcheck="false"
+                 inputmode="url" />
+              <button type="submit" class="btn-primary" id="audit-btn">Run Audit</button>
+           </form>
+
+           <div class="audit-output" id="audit-output" aria-live="polite"></div>
         </div>
      </section>
 
@@ -221,5 +245,6 @@
 
           <script src="script.js"></script>
      <script type="module" src="storefront/preview.js"></script>
+     <script type="module" src="audit/audit.js"></script>
 </body>
 </html>
