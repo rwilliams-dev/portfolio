@@ -2,7 +2,7 @@
 // Safe to ship in client-side code: this key is restricted by HTTP referrer in
 // Google Cloud Console, so it only works when called from rwilliamsdev.com.
 // An empty string falls back to the keyless (lower quota) public endpoint.
-const PSI_API_KEY = "";
+const PSI_API_KEY = "AIzaSyAR4jHBhojfhQ3Ld95-8G2ADP1gZLpYdx4";
 
 const PSI_ENDPOINT = "https://www.googleapis.com/pagespeedonline/v5/runPagespeed";
 const CATEGORIES = ["performance", "seo", "accessibility", "best-practices"];
@@ -233,7 +233,10 @@ function animateRing(ring) {
     arc.setAttribute("stroke-dashoffset", String(circumference - (value / 100) * circumference));
   };
 
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  // Paint the final value outright when we can't or shouldn't animate.
+  // document.hidden matters here: an audit takes ~30s, so results often land
+  // while the tab is backgrounded, and requestAnimationFrame won't fire there.
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || document.hidden) {
     paint(score);
     return;
   }
