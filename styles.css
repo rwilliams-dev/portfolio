@@ -879,31 +879,6 @@ footer {
     padding: 80px 20px;
   }
 
-  .audit {
-    padding: 80px 20px;
-  }
-
-  .audit-form {
-    flex-direction: column;
-  }
-
-  .audit-form .btn-primary {
-    width: 100%;
-    text-align: center;
-  }
-
-  .audit-scores {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px 12px;
-    padding: 28px 16px;
-  }
-
-  .audit-rec {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 12px;
-  }
-
   .contact {
     padding: 80px 20px;
   }
@@ -1185,6 +1160,35 @@ footer {
   clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* Audit mobile rules must follow the base rules above: media queries add no
+   specificity, so an earlier block would lose to the desktop declarations. */
+@media (max-width: 768px) {
+  .audit {
+    padding: 80px 20px;
+  }
+
+  .audit-form {
+    flex-direction: column;
+  }
+
+  .audit-form .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .audit-scores {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 12px;
+    padding: 30px 16px;
+  }
+
+  .audit-rec {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
 }
 
 /* ===== INSTANT PREVIEW ===== */
