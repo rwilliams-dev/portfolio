@@ -5,7 +5,7 @@ export const PRESETS = {
     sample: {
       en: {
         tagline: "Slow-fired over open coals",
-        heroUrl: "images/hero-choma.jpg",
+        heroUrl: "https://rwilliamsdev.com/images/hero-choma.jpg",
         hours: "Mon–Thu 12pm–10pm\nFri–Sun 12pm–midnight",
         menu: [
           { name: "Goat ribs, half kilo", price: "$14" },
@@ -16,7 +16,7 @@ export const PRESETS = {
       },
       sw: {
         tagline: "Choma ya moto wa makaa",
-        heroUrl: "images/hero-choma.jpg",
+        heroUrl: "https://rwilliamsdev.com/images/hero-choma.jpg",
         hours: "Jumatatu–Alhamisi 12pm–10pm\nIjumaa–Jumapili 12pm–usiku",
         menu: [
           { name: "Mbuzi choma, nusu kilo", price: "KSh 900" },
@@ -34,7 +34,7 @@ export const PRESETS = {
     sample: {
       en: {
         tagline: "From the lake, same morning",
-        heroUrl: "images/hero-samaki.jpg",
+        heroUrl: "https://rwilliamsdev.com/images/hero-samaki.jpg",
         hours: "Tue–Sun 11am–9pm\nClosed Mondays",
         menu: [
           { name: "Whole fried tilapia", price: "$16" },
@@ -45,7 +45,7 @@ export const PRESETS = {
       },
       sw: {
         tagline: "Samaki fresh kutoka ziwani",
-        heroUrl: "images/hero-samaki.jpg",
+        heroUrl: "https://rwilliamsdev.com/images/hero-samaki.jpg",
         hours: "Jumanne–Jumapili 11am–9pm\nJumatatu imefungwa",
         menu: [
           { name: "Ngege mzima wa kukaanga", price: "KSh 800" },
@@ -63,7 +63,7 @@ export const PRESETS = {
     sample: {
       en: {
         tagline: "Cold drinks, hot plates, late hours",
-        heroUrl: "images/hero-usiku.jpg",
+        heroUrl: "https://rwilliamsdev.com/images/hero-usiku.jpg",
         hours: "Wed–Thu 5pm–1am\nFri–Sat 5pm–3am\nSun 4pm–midnight",
         menu: [
           { name: "Grilled wings, 6 pc", price: "$9" },
@@ -74,7 +74,7 @@ export const PRESETS = {
       },
       sw: {
         tagline: "Vinywaji baridi, chakula cha moto, hadi usiku",
-        heroUrl: "images/hero-usiku.jpg",
+        heroUrl: "https://rwilliamsdev.com/images/hero-usiku.jpg",
         hours: "Jumatano–Alhamisi 5pm–1am\nIjumaa–Jumamosi 5pm–3am\nJumapili 4pm–usiku",
         menu: [
           { name: "Mabawa ya kuchoma, 6", price: "KSh 550" },
