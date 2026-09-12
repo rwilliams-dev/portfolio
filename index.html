@@ -116,6 +116,21 @@
             </div>
 
         </div>
+          </section>
+
+     <!-- INSTANT PREVIEW -->
+     <section class="preview" id="preview">
+        <h2 class="section-title">See Your Site, Right Now</h2>
+        <p class="section-subtitle">Type your business name, pick your kind of place, and watch it build</p>
+
+        <div class="preview-wrapper">
+           <div class="preview-controls">
+              <input type="text" id="preview-name" placeholder="Your business name" />
+              <select id="preview-cuisine"></select>
+              <input type="text" id="preview-town" placeholder="Your town" />
+           </div>
+           <iframe id="preview-frame" title="Live storefront preview" sandbox=""></iframe>
+        </div>
      </section>
 
      <!-- SKILLS -->
@@ -204,6 +219,7 @@
         <p>SF Bay Area, CA → Kisumu, Kenya</p>
      </footer>
 
-     <script src="script.js"></script>
+          <script src="script.js"></script>
+     <script type="module" src="storefront/preview.js"></script>
 </body>
 </html>
