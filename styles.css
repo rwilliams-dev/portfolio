@@ -1038,6 +1038,25 @@ footer {
   font-weight: 600;
 }
 
+/* Shown only when Google audited a different address than the one entered. */
+.audit-redirect-note {
+  max-width: 62ch;
+  margin: 0 auto var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid rgba(var(--warn-rgb), 0.3);
+  border-radius: var(--radius);
+  background-color: rgba(var(--warn-rgb), 0.08);
+  color: var(--text);
+  font-size: 13.5px;
+  line-height: 1.65;
+  text-align: center;
+}
+
+.audit-redirect-note strong {
+  color: var(--warn);
+  overflow-wrap: anywhere;
+}
+
 .audit-scores {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

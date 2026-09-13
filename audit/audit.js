@@ -222,8 +222,35 @@ function renderError(kind) {
   output.innerHTML = `<p class="audit-message audit-error" role="alert">${esc(message)}</p>`;
 }
 
+/*
+ * What Google actually audited, which is not always what was typed. A typo
+ * like "example.com.com" can resolve to a domain squatter's sales page, and
+ * the report would look perfectly legitimate under the address the visitor
+ * entered. Comparing hosts ignores a leading www. so the ordinary
+ * www/non-www redirect stays quiet.
+ */
+function auditedUrlNotice(target, lighthouse) {
+  const finalUrl = lighthouse.finalUrl || lighthouse.finalDisplayedUrl || lighthouse.requestedUrl;
+  if (!finalUrl) return { host: new URL(target).host, redirected: false };
+
+  const bare = h => h.replace(/^www\./i, "");
+  let finalHost;
+  try {
+    finalHost = new URL(finalUrl).host;
+  } catch {
+    return { host: new URL(target).host, redirected: false };
+  }
+
+  return {
+    host: finalHost,
+    finalUrl,
+    redirected: bare(finalHost) !== bare(new URL(target).host),
+  };
+}
+
 function renderSuccess(target, lighthouse) {
-  const host = esc(new URL(target).host);
+  const audited = auditedUrlNotice(target, lighthouse);
+  const host = esc(audited.host);
   const scores = readScores(lighthouse);
   const rings = [
     ["Performance", scores.performance],
@@ -253,6 +280,12 @@ function renderSuccess(target, lighthouse) {
 
   output.innerHTML = `
     <p class="audit-result-for">Results for <strong>${host}</strong></p>
+    ${audited.redirected ? `
+      <p class="audit-redirect-note" role="status">
+        You entered <strong>${esc(new URL(target).host)}</strong>, but it redirected to
+        <strong>${esc(audited.finalUrl)}</strong> — that is the page these scores describe.
+        Check the address if that isn't your site.
+      </p>` : ""}
 
     <div class="audit-scores">
       ${rings.map(([label, score]) => ringMarkup(label, score)).join("")}
