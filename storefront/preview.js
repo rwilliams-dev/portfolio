@@ -1,5 +1,5 @@
-import { buildStorefront } from "./template.js";
-import { PRESETS, applyPreset } from "./presets.js";
+import { buildStorefront } from "./template.js?v=7f738223";
+import { PRESETS, applyPreset } from "./presets.js?v=7f738223";
 
 const SAMPLE_CONTACT = {
   phone: "+254 700 000 000",
