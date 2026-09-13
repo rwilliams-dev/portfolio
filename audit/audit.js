@@ -103,9 +103,15 @@ function readScores(lighthouse) {
   };
 }
 
-// Lighthouse descriptions carry markdown links — keep the label, drop the URL.
+/*
+ * Lighthouse titles and descriptions are markdown: backticks around element
+ * names, and a trailing "Learn more" link on most descriptions. The link has
+ * nowhere to go once it is flattened, so drop those outright rather than
+ * leaving "Learn more about document titles." dangling with no link.
+ */
 function plainText(markdown) {
   return String(markdown ?? "")
+    .replace(/\[Learn more[^\]]*\]\([^)]*\)\.?/gi, "")
     .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
     .replace(/`([^`]*)`/g, "$1")
     .replace(/\s+/g, " ")
@@ -142,7 +148,7 @@ function buildRecommendations(lighthouse, limit = 3) {
 
       best.set(ref.id, {
         id: ref.id,
-        text: audit.title,
+        text: plainText(audit.title),
         detail: plainText(audit.description),
         category: category.title,
         cost,
