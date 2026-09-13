@@ -1130,10 +1130,23 @@ footer {
   box-shadow: var(--elev-2);
 }
 
+.audit-rec-body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
 .audit-rec-text {
   color: var(--text);
   font-size: 14px;
   line-height: 1.6;
+}
+
+.audit-rec-detail {
+  color: var(--text-dim);
+  font-size: 12.5px;
+  line-height: 1.65;
 }
 
 .audit-chips {

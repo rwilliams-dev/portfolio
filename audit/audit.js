@@ -87,9 +87,14 @@ async function fetchAuditScores(target) {
   }
 
   const data = await response.json();
-  const cats = data?.lighthouseResult?.categories;
-  if (!cats) throw new AuditError("upstream");
+  const lighthouse = data?.lighthouseResult;
+  if (!lighthouse?.categories) throw new AuditError("upstream");
+  return lighthouse;
+}
 
+function readScores(lighthouse) {
+  // Note the hyphen: the API key is "best-practices", not "bestPractices".
+  const cats = lighthouse.categories;
   return {
     performance: Math.round(cats.performance.score * 100),
     seo: Math.round(cats.seo.score * 100),
@@ -98,20 +103,61 @@ async function fetchAuditScores(target) {
   };
 }
 
-// Same thresholds and copy as the Biashara Boost dashboard.
-function buildRecommendations(scores) {
-  const recs = [];
-  if (scores.performance < 60)
-    recs.push({ text: "Compress images and enable caching — site is slow on mobile data", priority: "High", impact: "+18% visits" });
-  if (scores.seo < 70)
-    recs.push({ text: "Add page titles and meta descriptions so Google can rank you", priority: "High", impact: "+25% search traffic" });
-  if (scores.accessibility < 75)
-    recs.push({ text: "Increase text contrast and label buttons for all customers", priority: "Medium", impact: "+8% engagement" });
-  if (scores.bestPractices < 80)
-    recs.push({ text: "Switch to HTTPS and fix console errors to build trust", priority: "Medium", impact: "+12% conversions" });
-  if (recs.length === 0)
-    recs.push({ text: "Strong foundation — focus on WhatsApp ordering flow next", priority: "Low", impact: "+10% bookings" });
-  return recs;
+// Lighthouse descriptions carry markdown links — keep the label, drop the URL.
+function plainText(markdown) {
+  return String(markdown ?? "")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+    .replace(/`([^`]*)`/g, "$1")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/*
+ * Recommendations come from the audits that actually failed for this site.
+ *
+ * Each category lists its audits in auditRefs with a weight. An audit's cost
+ * to the score is weight * (1 - score) normalised over the category's total
+ * weight, which gives a real "this is costing you N points" figure — the
+ * ranking and the number are both derived from the response rather than
+ * being fixed copy.
+ */
+function buildRecommendations(lighthouse, limit = 3) {
+  const audits = lighthouse.audits || {};
+  const skip = new Set(["notApplicable", "manual", "informative"]);
+  const best = new Map();
+
+  for (const category of Object.values(lighthouse.categories || {})) {
+    const refs = (category.auditRefs || []).filter(r => r.weight > 0);
+    const totalWeight = refs.reduce((sum, r) => sum + r.weight, 0);
+    if (!totalWeight) continue;
+
+    for (const ref of refs) {
+      const audit = audits[ref.id];
+      if (!audit || audit.score === null || audit.score >= 0.9) continue;
+      if (skip.has(audit.scoreDisplayMode)) continue;
+
+      const cost = (ref.weight / totalWeight) * (1 - audit.score) * 100;
+      const existing = best.get(ref.id);
+      if (existing && existing.cost >= cost) continue;
+
+      best.set(ref.id, {
+        id: ref.id,
+        text: audit.title,
+        detail: plainText(audit.description),
+        category: category.title,
+        cost,
+      });
+    }
+  }
+
+  return [...best.values()]
+    .sort((a, b) => b.cost - a.cost)
+    .slice(0, limit)
+    .map(rec => ({
+      ...rec,
+      points: Math.max(1, Math.round(rec.cost)),
+      priority: rec.cost >= 6 ? "High" : rec.cost >= 2 ? "Medium" : "Low",
+    }));
 }
 
 /* ---------- flow ---------- */
@@ -130,8 +176,8 @@ async function runAudit(event) {
   renderRunning(target);
 
   try {
-    const scores = await fetchAuditScores(target);
-    renderSuccess(target, scores);
+    const lighthouse = await fetchAuditScores(target);
+    renderSuccess(target, lighthouse);
   } catch (error) {
     renderError(error instanceof AuditError ? error.kind : "upstream");
   } finally {
@@ -170,15 +216,34 @@ function renderError(kind) {
   output.innerHTML = `<p class="audit-message audit-error" role="alert">${esc(message)}</p>`;
 }
 
-function renderSuccess(target, scores) {
+function renderSuccess(target, lighthouse) {
   const host = esc(new URL(target).host);
+  const scores = readScores(lighthouse);
   const rings = [
     ["Performance", scores.performance],
     ["SEO", scores.seo],
     ["Accessibility", scores.accessibility],
     ["Best Practices", scores.bestPractices],
   ];
-  const recs = buildRecommendations(scores);
+  const recs = buildRecommendations(lighthouse);
+
+  const recsBlock = recs.length
+    ? `<h3 class="audit-recs-title">What to fix first</h3>
+    <ul class="audit-recs">
+      ${recs.map(rec => `
+        <li class="audit-rec">
+          <span class="audit-rec-body">
+            <span class="audit-rec-text">${esc(rec.text)}</span>
+            <span class="audit-rec-detail">${esc(rec.detail)}</span>
+          </span>
+          <span class="audit-chips">
+            <span class="audit-chip audit-chip-impact">${rec.points} pt${rec.points === 1 ? "" : "s"} · ${esc(rec.category)}</span>
+            <span class="audit-chip audit-chip-${rec.priority.toLowerCase()}">${esc(rec.priority)}</span>
+          </span>
+        </li>`).join("")}
+    </ul>`
+    : `<h3 class="audit-recs-title">Nothing significant to fix</h3>
+    <p class="audit-message">Every audit Google weights in these four categories passed on this run.</p>`;
 
   output.innerHTML = `
     <p class="audit-result-for">Results for <strong>${host}</strong></p>
@@ -187,21 +252,12 @@ function renderSuccess(target, scores) {
       ${rings.map(([label, score]) => ringMarkup(label, score)).join("")}
     </div>
 
-    <h3 class="audit-recs-title">What to fix first</h3>
-    <ul class="audit-recs">
-      ${recs.map(rec => `
-        <li class="audit-rec">
-          <span class="audit-rec-text">${esc(rec.text)}</span>
-          <span class="audit-chips">
-            <span class="audit-chip audit-chip-impact">${esc(rec.impact)}</span>
-            <span class="audit-chip audit-chip-${rec.priority.toLowerCase()}">${esc(rec.priority)}</span>
-          </span>
-        </li>`).join("")}
-    </ul>
+    ${recsBlock}
 
     <p class="audit-disclaimer">
-      Scores come from Google PageSpeed Insights and reflect one mobile test run.
-      Estimated impact figures are industry rules of thumb, not a guarantee.
+      Scores come from Google PageSpeed Insights, from a single test run using its
+      mobile profile. Each item above is an audit that actually failed for this page;
+      the points figure is how much that audit is costing its category score.
     </p>`;
 
   output.querySelectorAll(".audit-ring").forEach(animateRing);
